@@ -26,10 +26,11 @@ def get_kernel_roofline_metrics( statistics, kernel_id, append_to_statistics=Fal
  
   FLOPS   /= time * 1e3 # in TFLOPS  (teraflops) the 1e3 factor converts from 1/Ns to Tera
   if FLOPS < FLOPS_min : FLOPS = FLOPS_min 
-  LDS_BW  /= time * 1e3 # in TB/s  
-  vL1D_BW /= time * 1e3 # in TB/s  
-  L2_BW   /= time * 1e3 # in TB/s  
-  HBM_BW  /= time * 1e3 # in TB/s
+  time *= 1e-9 #convert from Ns to secs
+  LDS_BW  /= time * 1024**4 # in TB/s  
+  vL1D_BW /= time * 1024**4 # in TB/s  
+  L2_BW   /= time * 1024**4 # in TB/s  
+  HBM_BW  /= time * 1024**4 # in TB/s
   AI_HBM = FLOPS / HBM_BW
   if FLOPS == FLOPS_min: 
     rand_frac = 0.1
