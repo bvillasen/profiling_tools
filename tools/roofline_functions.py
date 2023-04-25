@@ -29,8 +29,7 @@ def get_kernel_roofline_metrics( statistics, kernel_id, append_to_statistics=Fal
   LDS_BW  /= time * 1e3 # in TB/s  
   vL1D_BW /= time * 1e3 # in TB/s  
   L2_BW   /= time * 1e3 # in TB/s  
-  HBM_BW  /= time * 1e3 # in TB/s  
-  if HBM_BW > 1.3: HBM_BW = 1.3
+  HBM_BW  /= time * 1e3 # in TB/s
   AI_HBM = FLOPS / HBM_BW
   if FLOPS == FLOPS_min: 
     rand_frac = 0.1
@@ -83,7 +82,7 @@ def plot_roofline( kernel_statistics, roofline_metrics, roofline_bounds,
   legend_size = 8
   fig_text_size = 8
   text_color = 'black'
-    
+
   nrows, ncols = 1, 1  
   fig, ax = plt.subplots(nrows=nrows, ncols=ncols, figsize=(figure_width*ncols,figure_width*nrows*h_scale_factor))
   plt.subplots_adjust( hspace = 0.1, wspace=0.15)
